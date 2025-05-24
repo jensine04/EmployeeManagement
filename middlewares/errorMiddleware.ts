@@ -6,7 +6,7 @@ export const errorMiddleware = (error: Error,
     res:Response,
     next: NextFunction) => {
         try{
-            console.log("HERE .........")
+            //console.log("HERE .........")
             if (error instanceof HttpException){
                 const status: number=error.status || 500;
                 const message: string =error.message || "Something went wrong";
@@ -14,7 +14,7 @@ export const errorMiddleware = (error: Error,
                 res.status(status).json(respbody);
             }
             else{
-                console.log("here............")
+                //console.log("here............")
                 console.error(error.stack);
                 res.status(500).send({error:error.message})
         }}
