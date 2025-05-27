@@ -13,9 +13,9 @@ import authorizationMiddleware from "../middlewares/authorization.middleware"
 class EmployeeController{
     constructor(private employeeService: EmployeeService, router: Router){
         router.post("/",authorizationMiddleware([EmployeeRole.HR]) ,this.createEmployee.bind(this));
-        router.get("/",this.getAllEmployees.bind(this));
-        router.get("/:id",this.getEmployeeById.bind(this));
-        router.put("/:id",authorizationMiddleware([EmployeeRole.HR,EmployeeRole.DEVELOPER]),this.updateEmployee.bind(this));
+        router.get("/",authorizationMiddleware([EmployeeRole.HR,EmployeeRole.DEVELOPER,EmployeeRole.UI]) ,this.getAllEmployees.bind(this));
+        router.get("/:id",authorizationMiddleware([EmployeeRole.HR,EmployeeRole.DEVELOPER]),this.getEmployeeById.bind(this));
+        router.put("/:id",authorizationMiddleware([EmployeeRole.HR]),this.updateEmployee.bind(this));
         router.delete("/:id",authorizationMiddleware([EmployeeRole.HR]) ,this.deleteEmployee);
     }
 
@@ -32,6 +32,11 @@ class EmployeeController{
                 createEmployeeDto.name,
                 createEmployeeDto.age,
                 createEmployeeDto.role,
+                createEmployeeDto.departmentId,
+                createEmployeeDto.employeeId,
+                createEmployeeDto.experience,
+                createEmployeeDto.dateOfJoining ,
+                createEmployeeDto.status ,
                 createEmployeeDto.address,
                 createEmployeeDto.password
             );
@@ -82,6 +87,10 @@ class EmployeeController{
             updateEmployeeDto.name,
             updateEmployeeDto.age,
             updateEmployeeDto.role,
+            updateEmployeeDto.departmentId,
+            updateEmployeeDto.employeeId,
+            updateEmployeeDto.experience,
+            updateEmployeeDto.status,
             updateEmployeeDto.address,
             updateEmployeeDto.password
         );

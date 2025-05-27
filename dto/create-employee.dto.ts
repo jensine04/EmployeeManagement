@@ -26,6 +26,10 @@ export class CreateEmployeeDto {
   experience: number;
 
   @IsNotEmpty()
+  @IsNumber()
+  departmentId: number;
+
+  @IsNotEmpty()
   @IsDateString()
   dateOfJoining: Date;
 

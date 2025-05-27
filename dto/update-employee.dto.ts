@@ -18,8 +18,16 @@ export class UpdateEmployeeDto{
       age: number;
 
       @IsNotEmpty()
+  @IsString()
+  employeeId: string;
+
+      @IsNotEmpty()
     @IsNumber()
      experience: number;
+
+     @IsNotEmpty()
+  @IsNumber()
+  departmentId: number;
     
       @IsNotEmpty()
       @IsString()
